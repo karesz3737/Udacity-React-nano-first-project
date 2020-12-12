@@ -25,10 +25,12 @@ class App extends React.Component {
       books: prev.books.filter((bb) => bb.id !== book.id).concat([book]),
     }));
     BooksAPI.update(book, shelf);
+    console.log(this.state.books);
   };
   bookSearch = (query) => {
     const checker = (queryString) => {
-      if (searchItems.includes(!queryString)) {
+      if (searchItems.includes(!queryString) || query === "") {
+        this.setState({ booksB: [] });
         return;
       }
       return queryString;
@@ -45,13 +47,14 @@ class App extends React.Component {
     let booksB = queryBooks.map((book) => {
       prevBooks.forEach((bb) => {
         if (book.id === bb.id) {
-          book = bb;
+          book.shelf = bb.shelf;
+        } else {
+          book.shelf = "None";
         }
       });
       return book;
     });
     this.setState({ booksB: booksB });
-    console.log(this.state.booksB);
   };
   render() {
     {

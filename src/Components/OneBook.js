@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 
 export default class OneBook extends Component {
+  state = {
+    shelf: "",
+  };
   changer = (event) => {
-    let shelf = event.target.value;
+    const shelf = event.target.value;
+    this.setState({ shelf });
     this.props.bookChanger(this.props.book, shelf);
   };
 
   render() {
-
     const { book, bookChanger } = this.props;
     return (
       <div className="book">
@@ -17,11 +20,15 @@ export default class OneBook extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url("${book.imageLinks.thumbnail}")`,
+              backgroundImage: `url(${
+                book.imageLinks
+                  ? book.imageLinks.thumbnail
+                  : "https://tse4.mm.bing.net/th?id=OIP.Ma16cf9515d636491e82c166e8d76c9b2o0&"
+              })`,
             }}
           />
           <div className="book-shelf-changer">
-            <select onChange={this.changer}>
+            <select onChange={this.changer} value={this.state.shelf}>
               <option value="move" disabled>
                 Move to...
               </option>
