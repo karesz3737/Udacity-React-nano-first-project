@@ -39,17 +39,18 @@ class App extends React.Component {
     BooksAPI.search(checker(query)).then((book) => {
       if (Array.isArray(book)) {
         this.displayBooks(book);
+      } else {
+        this.setState({ booksB: [] });
       }
     });
   };
   displayBooks = (queryBooks) => {
     let prevBooks = this.state.books;
+    queryBooks.map((pv) => (pv.shelf = "none"));
     let booksB = queryBooks.map((book) => {
       prevBooks.forEach((bb) => {
         if (book.id === bb.id) {
           book.shelf = bb.shelf;
-        } else {
-          book.shelf = "None";
         }
       });
       return book;
@@ -57,21 +58,13 @@ class App extends React.Component {
     this.setState({ booksB: booksB });
   };
   render() {
-    {
-      this.state.error && console.log(this.state.error);
-    }
+    console.log(this.state.booksB);
     return (
       <div className="app">
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <BookShels book={this.state.books} bookChanger={this.bookChanger} />
-          )}
-        />
+
         <Route
           exact
           path="/search"
@@ -84,7 +77,10 @@ class App extends React.Component {
               resetBooks={this.resetBooks}
             />
           )}
-        />
+        ></Route>
+        <Route exact path="/">
+          <BookShels book={this.state.books} bookChanger={this.bookChanger} />
+        </Route>
       </div>
     );
   }

@@ -1,32 +1,37 @@
 import React, { Component } from "react";
 import OneBook from "./OneBook";
+import { Link } from "react-router-dom";
 
 export default class SearchPage extends Component {
-  state = { query: "" };
+  // state = { query: "" };
   handLeInput = (event) => {
-    this.setState({ query: event.target.value });
-    this.props.bookSearch(this.state.query);
+    this.props.bookSearch(event.target.value);
   };
   render() {
     const { booksB, bookChanger, resetBooks } = this.props;
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <button className="close-search" onClick={resetBooks}></button>
+          <Link to="/">
+            <button className="close-search" onClick={resetBooks}></button>
+          </Link>
           <div className="search-books-input-wrapper">
             <input
               type="text"
               placeholder="Search by title or author"
               onChange={this.handLeInput}
-              value={this.state.query}
             />
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
             {booksB.length > 0
-              ? booksB.map((book, index) => (
-                  <OneBook book={book} bookChanger={bookChanger} key={index} />
+              ? booksB.map((book) => (
+                  <OneBook
+                    book={book}
+                    bookChanger={bookChanger}
+                    key={book.id}
+                  />
                 ))
               : ""}
           </ol>

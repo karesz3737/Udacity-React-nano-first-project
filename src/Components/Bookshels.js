@@ -6,6 +6,7 @@ const Bookshels = ({ book, bookChanger }) => {
   const Wr = book.filter((bb) => bb.shelf === "wantToRead");
   const r = book.filter((bb) => bb.shelf === "read");
   const titles = ["Currently Reading", "Want to Read", "Read"];
+
   return (
     <div className="list-books">
       <div className="list-books-content">
@@ -15,11 +16,8 @@ const Bookshels = ({ book, bookChanger }) => {
       </div>
       <div className="open-search">
         <Link to="/search">
-        <button >
-          Add a book
-        </button>
+          <button>Add a book</button>
         </Link>
-      
       </div>
     </div>
   );

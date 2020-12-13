@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class OneBook extends Component {
   state = {
-    shelf: "",
+    shelf: "None",
   };
   changer = (event) => {
     const shelf = event.target.value;
@@ -28,7 +28,7 @@ export default class OneBook extends Component {
             }}
           />
           <div className="book-shelf-changer">
-            <select onChange={this.changer} value={this.state.shelf}>
+            <select onChange={this.changer} value={book.shelf}>
               <option value="move" disabled>
                 Move to...
               </option>
@@ -40,7 +40,9 @@ export default class OneBook extends Component {
           </div>
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors || "Unknown"}</div>
+        <div className="book-authors">
+          {book.authors ? book.authors.join(", ") : "Unknown"}
+        </div>
       </div>
     );
   }
