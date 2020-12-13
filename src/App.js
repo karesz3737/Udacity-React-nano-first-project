@@ -29,7 +29,7 @@ class App extends React.Component {
   };
   bookSearch = (query) => {
     const checker = (queryString) => {
-      if (!searchItems.includes(queryString) || query === "") {
+      if (searchItems.includes(queryString) || query === "") {
         this.setState({ booksB: [] });
         return;
       }

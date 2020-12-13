@@ -11,7 +11,7 @@ export default class OneBook extends Component {
   };
 
   render() {
-    const { book, bookChanger } = this.props;
+    const { book } = this.props;
     return (
       <div className="book">
         <div className="book-top">
