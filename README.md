@@ -10,4 +10,4 @@ MyReads is project that allows the user to select and categorize books they have
 ```
 
 
-[![Screenshot-2021-02-24-at-3-01-15.png](https://i.postimg.cc/9fH18TX5/Screenshot-2021-02-24-at-3-01-15.png)](https://postimg.cc/G4zk94sq)
+[![Screenshot-2021-02-24-at-3-01-15.png](https://i.postimg.cc/L4QDdG4V/Screenshot-2021-02-24-at-3-01-15.png)](https://postimg.cc/rzWxxnrd)
